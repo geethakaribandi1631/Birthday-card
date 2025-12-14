@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday! 🎀</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let currentSlide = 0;
+
+    window.updateArrowSlider = function () {
+        const track = document.getElementById("arrowTrack");
+        if (!track) return;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    };
+
+    window.nextSlide = function () {
+        const images = document.querySelectorAll("#arrowTrack img");
+        if (!images.length) return;
+        currentSlide = (currentSlide + 1) % images.length;
+        updateArrowSlider();
+    };
+
+    window.prevSlide = function () {
+        const images = document.querySelectorAll("#arrowTrack img");
+        if (!images.length) return;
+        currentSlide = (currentSlide - 1 + images.length) % images.length;
+        updateArrowSlider();
+    };
+});
+</script>
+
+</head>
+
+<body class="page">
+    
+    <div id="stage1" class="card active" style="padding-top: 12px;">
+        <div class="center">
+            <h1 class="main-title">Happy Birthday Girl 🎀</h1>
+            <p class="subtitle">A special surprise is waiting for you…</p>
+            <button onclick="nextStage(2)" class="continue-btn">Open Surprise ✨</button>
+        </div>
+    </div>
+
+    <div id="stage2" class="card hidden">
+        <h1 class="main-title title">A Birthday Love Letter 💌</h1>
+        <p class="subtitle">From my heart to the birthday queen</p>
+
+        <div id="envelopeSection">
+            <div id="envelopeBox" class="envelope" onclick="nextAction()">
+                <div class="top-flap"></div>
+                <div class="bottom-flap"></div>
+            </div>
+        </div>
+        
+        <div id="letterCard" class="letter-card">
+            <div class="hello-kitty"></div>
+            
+            <div class="letter-header">💌 To My Bestie, Teju</div> 
+            <div id="letterText" class="letter-text"></div>
+            <div class="stamp">🎉<br>LOVE SEAL</div>
+            <div class="signature">Your Forever Friend ❤️</div> 
+        </div>
+
+        <button id="continueBtn" class="continue-btn hidden-btn" onclick="nextAction()">Continue It ✨</button>
+    </div>
+    <div id="stage3" class="card hidden">
+    <h1 class="main-title title">Memories 💗</h1>
+
+    <div class="arrow-slider">
+        <button class="arrow left" onclick="prevSlide()">❮</button>
+
+        <div class="slider-window">
+            <div class="slider-track" id="arrowTrack">
+                <img src="1.jpg" alt="Memory 1">
+                <img src="2.jpg" alt="Memory 2">
+                <img src="3.jpg" alt="Memory 3">
+                <img src="4.jpg" alt="Memory 4">
+                <img src="5.jpeg" alt="Memory 5">
+                <img src="6.jpeg" alt="Memory 5">
+            </div>
+        </div>
+
+        <button class="arrow right" onclick="nextSlide()">❯</button>
+    </div>
+
+    <button onclick="nextStage(4)" class="continue-btn">Next Surprise ✨</button>
+</div>
+
+    
+    <div id="stage4" class="card hidden" style="text-align: center;">
+        <h1 class="main-title title">10 Reasons Why I Love You 🥰</h1>
+        <p class="subtitle">Just a few things that make you the best!</p>
+        
+        <div class="reasons-list-container">
+            <ul id="reasonsList" class="reasons-list">
+                <li>✨ I love how you <b>can always make me laugh</b>, even when I'm having the worst day.</li>
+                <li>💖 You're the most <b>fiercely loyal friend</b> a person could ask for.</li>
+                <li>🧠 You <b>inspire me every day</b> with how smart and ambitious you are.</li>
+                <li>🍕 Our perfect, lazy nights of eating <b>junk food and re-watching our favorite shows</b> together.</li>
+                <li>🌟 I love that you <b>never change who you are</b> for anyone—you're always Teju.</li>
+                <li>🫂 You're my personal therapist who always <b>listens without judgment</b>.</li>
+                <li>💪 Watching you crush your goals gives <b>me the motivation</b> I need.</li>
+                <li>👑 I love your <b>crazy, random sense of humor</b> that only I understand.</li>
+                <li>🍜 For knowing the <b>exact order and customizations</b> for my favorite coffee/snack.</li>
+                <li>🏠 Knowing that <b>no matter what</b>, you'll be my best friend forever.</li>
+            </ul>
+        </div>
+        
+        <button onclick="nextStage(5)" class="continue-btn">Final Wishes 🎁</button>
+    </div>
+
+
+    <div id="stage5" class="card hidden" style="text-align: center;">
+        <h1 class="heading">Birthday Wishes Cards 🎀</h1>
+        <p class="subtext">Tap to reveal each one!</p>
+
+        <div class="cards-wrapper">
+            <div class="flip-card" onclick="flip(this)">
+                <div class="flip-inner">
+                    <div class="flip-front">Tap to reveal ✨💝</div>
+                    <div class="flip-back">
+                        Happy Birthday to my incredible best friend! May your day be as bright, fun, and fabulous as you are. 🎉💕✨
+                        <span class="tap-info">Tap to flip back</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="flip(this)">
+                <div class="flip-inner">
+                    <div class="flip-front">Tap to reveal 🌸💫</div>
+                    <div class="flip-back">
+                        Another year of friendship, laughter, and amazing memories. You truly are the best. Here's to you, Teju! ✨🌷💖
+                        <span class="tap-info">Tap to flip back</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card" onclick="flip(this)">
+                <div class="flip-inner">
+                    <div class="flip-front">Tap to reveal 💕🌟</div>
+                    <div class="flip-back">
+                        May this new year bring you endless joy, success, and all the dreams your heart desires. Love you always! ❤️🌟🎀
+                        <span class="tap-info">Tap to flip back</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="bottom-line">Amazing! All birthday wishes revealed! ✨💛🌸</p>
+        <button onclick="alert('I love you! ❤️')" class="continue-btn">Final Hug 🤗</button>
+    </div>
+
+<script>
+    // --- STAGE NAVIGATION LOGIC ---
+    function nextStage(stageNumber) {
+        document.querySelectorAll('.card').forEach(el => el.classList.remove('active'));
+
+        const next = document.getElementById('stage' + stageNumber);
+        next.classList.remove('hidden');
+        
+        setTimeout(() => {
+            document.querySelectorAll('.card').forEach(el => {
+                if(el.id !== 'stage' + stageNumber) {
+                    el.classList.add('hidden');
+                }
+            });
+            next.classList.add('active');
+            
+            if (stageNumber === 5) {
+                // Trigger confetti on the final wishes page (Stage 5)
+                triggerConfetti();
+            }
+        }, 10);
+    }
+    
+    // --- LETTER LOGIC ---
+    const letters = [
+        `My dearest Teju,<br><br>
+        Today marks another year of your incredible existence, and I couldn't be more grateful to celebrate it with you. You bring so much joy, laughter, and love into my world and into my life. You deserve all the magic, all the dreams, and all the love this world has to offer.`,
+
+        `You have been with me in my happiest moments and also in my hardest days. You stood beside me when I felt weak, and you always lifted me up. Your support as my best friend means more to me than words can ever explain.`,
+
+        `Thank you for staying by my side through every high and low. You listened to me, guided me, and never left my side. I feel completely safe with you, and I know I can always trust you with anything.`,
+
+        `You bring comfort, laughter, and peace into my life. I admire your heart, your strength, and your kindness. You truly are a blessing, Teju, and I wish you all the happiness in this world.`
+    ];
+
+    let currentLetterIndex = 0;
+    let envelopeOpened = false;
+    const letterCard = document.getElementById("letterCard");
+    const continueBtn = document.getElementById("continueBtn");
+
+    function openEnvelope() {
+        if (envelopeOpened) return;
+        document.getElementById("envelopeBox").classList.add("open");
+        setTimeout(() => {
+            document.getElementById("envelopeSection").style.display = "none";
+            showLetter();
+            continueBtn.classList.remove("hidden-btn");
+            envelopeOpened = true;
+        }, 900);
+    }
+
+    function showLetter() {
+        letterCard.style.display = "block";
+        document.getElementById("letterText").innerHTML = letters[currentLetterIndex];
+    }
+
+    function nextLetter() {
+        currentLetterIndex++;
+        if (currentLetterIndex >= letters.length) {
+            nextStage(3);
+            return;
+        }
+        document.getElementById("letterText").style.opacity = 0;
+        setTimeout(() => {
+            document.getElementById("letterText").innerHTML = letters[currentLetterIndex];
+            document.getElementById("letterText").style.opacity = 1;
+        }, 400);
+    }
+
+    function nextAction() {
+        if (!envelopeOpened) {
+            openEnvelope();
+        } else {
+            nextLetter();
+        }
+    }
+    
+    // --- PHOTO CAROUSEL LOGIC ---
+    const track = document.getElementById('carouselTrack');
+    const slides = document.querySelectorAll('#carouselTrack .slide');
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+    let autoAdvance = null;
+
+    function updateCarousel() {
+        const offset = currentIndex * -100;
+        if(track) track.style.transform = `translateX(${offset}%)`;
+        
+        document.querySelectorAll('#dotsContainer .dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateCarousel();
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.card').forEach(card => {
+            const observer = new MutationObserver(mutations => {
+                mutations.forEach(mutation => {
+                    if (mutation.attributeName === 'class') {
+                        if (card.id === 'stage3' && card.classList.contains('active')) {
+                            if (!autoAdvance && totalSlides > 1) {
+                                currentIndex = 0;
+                                updateCarousel();
+                                autoAdvance = setInterval(nextSlide, 3500); 
+                            }
+                        } else if (card.id === 'stage3' && !card.classList.contains('active')) {
+                            if (autoAdvance) {
+                                clearInterval(autoAdvance);
+                                autoAdvance = null;
+                            }
+                        }
+                    }
+                });
+            });
+            observer.observe(card, { attributes: true });
+        });
+    });
+
+
+    // --- FINAL WISHES LOGIC (Stage 5) ---
+    function flip(card) {
+        card.classList.toggle("flipped");
+    }
+
+    // --- GLOBAL CONFETTI ---
+    function triggerConfetti() {
+        confetti({
+            particleCount: 150,
+            spread: 90,
+            origin: { y: 0.6 }
+        });
+    }
+</script>
+
+</body>
+</html>
