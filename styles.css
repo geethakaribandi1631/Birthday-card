@@ -1,0 +1,409 @@
+/* Full-page center (mobile centering fix) */
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;    /* CRITICAL FIX: Centers content vertically on mobile */
+    min-height: 100vh;
+    background: linear-gradient(#ffe3ef, #ffd4ec);
+    padding: 30px 20px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+/* Page management for smooth transitions */
+.card {
+    position: absolute; /* Allows cards to overlap for smooth transitions */
+    width: 90%;
+    max-width: 420px;
+    background: #ffffff;
+    text-align: center;
+    padding: 30px 25px;
+    border-radius: 25px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    margin-top: 12px;
+    box-sizing: border-box;
+    /* Transition styles */
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.5s ease-out;
+    pointer-events: none;
+}
+
+.card.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+    z-index: 10;
+}
+
+.hidden {
+    display: none; /* Hide when not in transition */
+}
+
+
+/* --- GENERAL STYLES --- */
+.center {
+    text-align: center;
+}
+
+.main-title, .title {
+    font-size: 26px;
+    color: #ff4f8b;
+    font-weight: 600;
+}
+
+.subtitle {
+    margin-top: -4px;
+    font-size: 14px;
+    color: #7d7d7d;
+}
+
+/* Continue button */
+.continue-btn {
+    display: block;
+    margin: 22px auto 4px;
+    padding: 14px 22px;
+    background: #ff4f8b;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(255, 90, 140, 0.35);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hidden-btn {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s;
+}
+
+/* ----------------------------------------------------- */
+/* --- STAGE 2: ENVELOPE STYLES --- */
+/* ----------------------------------------------------- */
+#envelopeSection {
+    margin-top: 30px;
+    display:flex;
+    justify-content:center;
+    box-sizing: border-box;
+}
+
+.envelope {
+    width: 250px;
+    height: 180px;
+    background: #ffc2e0; /* Envelope Body Color */
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.top-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 90px solid #ff9fc2; /* Flap color and height */
+    border-right: 125px solid transparent;
+    border-left: 125px solid transparent;
+    transform-origin: top;
+    transition: transform 0.8s ease-in-out;
+    z-index: 3;
+}
+
+.bottom-flap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 90px solid #ff9fc2;
+    border-right: 125px solid transparent;
+    border-left: 125px solid transparent;
+    z-index: 1;
+}
+
+.envelope.open .top-flap {
+    transform: rotateX(180deg);
+}
+
+/* --- LETTER CARD STYLES --- */
+.letter-card {
+    display: none;
+    margin-top: 18px;
+    background: #fffdfd;
+    border-radius: 20px;
+    padding: 22px;
+    border: 2px solid #ffe4f0;
+    box-shadow: 0 8px 25px rgba(255, 110, 150, 0.25);
+    animation: fadeIn 0.8s ease;
+    position: relative;
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.letter-header {
+    font-size: 16px;
+    font-weight: 600;
+    color: #d33f82;
+    text-align: left;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #ffd1e9;
+}
+
+.letter-text {
+    /* CHANGED FONT: From 'Dancing Script' to 'Poppins' for a non-cursive look */
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px; 
+    line-height: 1.5; 
+    margin-top: 12px;
+    text-align: left;
+    color: #444;
+    transition: 0.4s;
+    box-sizing: border-box;
+}
+
+.stamp {
+    position: absolute;
+    top: 20px;    
+    right: 20px;   
+    width: 52px;
+    height: 52px;
+    font-size: 12px;
+    border-radius: 50%;
+    background: #ffe7f1;
+    border: 2px dotted #ff75ad;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ff4f8b;
+    font-weight: 600;
+    box-sizing: border-box;
+    z-index: 5;
+}
+
+/* Signature */
+.signature {
+    text-align: right;
+    font-size: 18px;
+    color: #ff4f8b;
+    margin-top: 18px;
+    /* CHANGED FONT: From 'Dancing Script' to 'Poppins' */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+/* --- PHOTO CAROUSEL STYLES (Stage 3) --- */
+/* ===== STAGE 3 : ARROW SLIDER ===== */
+
+#stage3 {
+    text-align: center;
+    align-items: center;
+}
+
+/* Slider wrapper */
+.arrow-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px auto;
+}
+
+/* Arrow buttons */
+.arrow {
+    background: #ff4f8b;
+    color: white;
+    border: none;
+    font-size: 22px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255,90,140,0.35);
+    transition: 0.3s;
+}
+
+.arrow:hover {
+    transform: scale(1.1);
+}
+
+/* Slider window */
+.slider-window {
+    width: 100%;
+    max-width: 360px;
+    height: 260px;
+    overflow: hidden;
+    border-radius: 22px;
+    box-shadow: 0 10px 30px rgba(255,110,150,0.25);
+}
+
+/* Track */
+.slider-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Images */
+.slider-track img {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+/* Mobile */
+@media (max-width: 420px) {
+    .slider-window {
+        height: 240px;
+    }
+}
+
+/* --- REASONS LIST STYLES (Stage 4) --- */
+.reasons-list-container {
+    height: 250px;
+    overflow-y: auto;
+    padding: 10px 15px;
+    margin: 20px 0;
+    background: #fff7fb;
+    border-radius: 15px;
+    box-shadow: inset 0 0 10px rgba(255, 79, 139, 0.1);
+    text-align: left;
+}
+
+.reasons-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reasons-list li {
+    font-size: 15px;
+    color: #444;
+    padding: 10px 0;
+    border-bottom: 1px dotted #ffc2e0;
+    transition: background 0.3s;
+}
+
+.reasons-list li:last-child {
+    border-bottom: none;
+}
+
+
+/* ----------------------------------------------------- */
+/* --- STAGE 5: FINAL WISHES STYLES (UI REDESIGN) --- */
+/* ----------------------------------------------------- */
+
+.heading {
+    color: #ff4f8b;
+    margin-bottom: 4px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.subtext {
+    margin-top: -2px;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+.cards-wrapper {
+    margin-top: 25px; 
+    display: flex;
+    flex-direction: column;
+    gap: 25px; 
+}
+
+.flip-card {
+    width: 100%;
+    height: 180px; 
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flip-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    
+}
+
+/* *** GIFT BOX FRONT REDESIGN *** */
+.flip-front {
+    background: linear-gradient(135deg, #FF6F91, #D6336C);
+    color: white;
+    border: 8px solid #FFEBEB; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+    
+    font-size: 22px; 
+    font-weight: 800;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+/* *** WISH CARD BACK REDESIGN *** */
+.flip-back {
+    background: #fff;
+    color: #222; 
+    border: 3px solid #D6336C; 
+    transform: rotateY(180deg);
+    font-size: 16px; 
+    line-height: 1.7; 
+    padding: 25px 30px; 
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(255, 79, 139, 0.2); 
+}
+
+.tap-info {
+    display: block;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #ff4f8b;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    left: 0;
+}
+
+.bottom-line {
+    font-size: 14px;
+    color: #ff4f8b;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+
+/* Responsive adjustments from original code */
+@media (max-width:420px){
+  .container { padding-top: 12px; width:94%; }
+  .envelope { width:220px; height:150px; }
+  /* Readjusting V-shape to match smaller envelope size */
+  .top-flap { border-top: 75px solid #ff9fc2; border-right: 110px solid transparent; border-left: 110px solid transparent; }
+  .bottom-flap { border-bottom: 75px solid #ff9fc2; border-right: 110px solid transparent; border-left: 110px solid transparent; }
+  .letter-text { font-size:15px; } 
+  .slide { height:220px; }
+}
